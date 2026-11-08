@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Avril Marge Pascua — BSIT Student & Web Developer</title>
+<meta name="description" content="Portfolio of Avril Marge Pascua — 4th-year BSIT student majoring in Web Systems. Turning ideas into thoughtful websites and practical web-based systems.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --bone:#f3f0ea;
+  --bone-2:#eae5dc;
+  --ink:#17150f;
+  --muted:#6f6a5f;
+  --line:rgba(23,21,15,.14);
+  --accent:#bf4b2b;
+  --max:1180px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+
+body{
+  margin:0;
+  background:var(--bone);
+  color:var(--ink);
+  font-family:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px;
+  line-height:1.65;
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+}
+
+/* subtle paper grain */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:100;
+  opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+::selection{background:var(--ink);color:var(--bone)}
+
+img{max-width:100%;display:block}
+
+a{color:inherit}
+
+/* ============ TYPE ============ */
+.serif{
+  font-family:"Instrument Serif",Georgia,"Times New Roman",serif;
+  font-weight:400;
+  letter-spacing:-.02em;
+  line-height:.95;
+}
+.serif em{font-style:italic}
+
+.eyebrow{
+  font-size:11px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--muted);
+  font-weight:500;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:0 0 28px;
+}
+.eyebrow::before{
+  content:"";
+  width:6px;height:6px;
+  border-radius:50%;
+  background:var(--accent);
+  flex:none;
+}
+
+.display{
+  font-family:"Instrument Serif",Georgia,serif;
+  font-weight:400;
+  letter-spacing:-.025em;
+  line-height:.94;
+  font-size:clamp(2.4rem,6.2vw,4.8rem);
+  margin:0;
+}
+
+.lede{
+  font-size:clamp(1rem,1.5vw,1.15rem);
+  color:var(--muted);
+  max-width:56ch;
+  line-height:1.7;
+  margin:0;
+}
+
+/* ============ LAYOUT ============ */
+.wrap{
+  max-width:var(--max);
+  margin:0 auto;
+  width:100%;
+}
+
+.section{
+  padding:clamp(72px,11vw,150px) clamp(20px,5vw,56px);
+  scroll-margin-top:80px;
+  position:relative;
+}
+
+/* ============ PROGRESS + NAV ============ */
+.progress{
+  position:fixed;
+  top:0;left:0;right:0;
+  height:2px;
+  z-index:60;
+  background:transparent;
+  pointer-events:none;
+}
+.progress-bar{
+  height:100%;
+  background:var(--accent);
+  transform:scaleX(0);
+  transform-origin:0 50%;
+  transition:transform .1s linear;
+}
+
+.nav{
+  position:fixed;
+  top:0;left:0;right:0;
+  z-index:55;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  padding:20px clamp(20px,5vw,56px);
+  transition:padding .45s var(--ease),background .45s var(--ease),border-color .45s var(--ease);
+  border-bottom:1px solid transparent;
+}
+.nav.scrolled{
+  padding-top:12px;
+  padding-bottom:12px;
+  background:rgba(243,240,234,.82);
+  -webkit-backdrop-filter:blur(16px);
+  backdrop-filter:blur(16px);
+  border-bottom-color:var(--line);
+}
+
+.brand{
+  font-family:"Instrument Serif",Georgia,serif;
+  font-size:22px;
+  letter-spacing:-.02em;
+  text-decoration:none;
+  line-height:1;
+  white-space:nowrap;
+}
+.brand span{color:var(--accent)}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:clamp(14px,2.4vw,30px);
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+.nav-links a{
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  font-weight:500;
+  text-decoration:none;
+  color:var(--muted);
+  position:relative;
+  padding:6px 0;
+  transition:color .3s;
+}
+.nav-links a::after{
+  content:"";
+  position:absolute;
+  left:0;bottom:0;
+  height:1px;width:100%;
+  background:var(--ink);
+  transform:scaleX(0);
+  transform-origin:0 50%;
+  transition:transform .4s var(--ease);
+}
+.nav-links a:hover,
+.nav-links a.active{color:var(--ink)}
+.nav-links a:hover::after,
+.nav-links a.active::after{transform:scaleX(1)}
+
+/* ============ HERO ============ */
+.hero{
+  min-height:100svh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:130px clamp(20px,5vw,56px) 40px;
+  position:relative;
+}
+
+.hero h1{
+  font-family:"Instrument Serif",Georgia,serif;
+  font-weight:400;
+  letter-spacing:-.035em;
+  line-height:.86;
+  font-size:clamp(3rem,11.5vw,9.5rem);
+  margin:0 0 clamp(28px,4vw,48px);
+}
+.hero h1 em{font-style:italic;color:var(--accent)}
+
+.hero-bottom{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:clamp(24px,5vw,64px);
+  flex-wrap:wrap;
+  padding-bottom:clamp(32px,6vw,64px);
+}
+
+.hero-cta{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  font-size:12px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  font-weight:500;
+  text-decoration:none;
+  padding:14px 24px;
+  border-radius:100px;
+  border:1px solid var(--ink);
+  background:var(--ink);
+  color:var(--bone);
+  transition:background .4s var(--ease),color .4s var(--ease),transform .4s var(--ease),border-color .4s var(--ease);
+}
+.btn:hover{background:transparent;color:var(--ink);transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:var(--bone)}
+.btn .arw{transition:transform .4s var(--ease)}
+.btn:hover .arw{transform:translateX(4px)}
+
+.hero-foot{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  border-top:1px solid var(--line);
+  padding-top:20px;
+  font-size:11px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--muted);
+  flex-wrap:wrap;
+}
+.scrollcue{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+}
+.scrollcue i{
+  display:block;
+  width:34px;height:1px;
+  background:var(--muted);
+  position:relative;
+  overflow:hidden;
+}
+.scrollcue i::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:var(--accent);
+  animation:sweep 2.2s var(--ease) infinite;
+}
+@keyframes sweep{
+  0%{transform:translateX(-100%)}
+  60%,100%{transform:translateX(100%)}
+}
+
+/* ============ MARQUEE ============ */
+.marquee{
+  overflow:hidden;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  padding:16px 0;
+  background:var(--bone-2);
+  -webkit-user-select:none;
+  user-select:none;
+}
+.marquee-track{
+  display:flex;
+  width:max-content;
+  animation:marquee 36s linear infinite;
+}
+.marquee-group{
+  display:flex;
+  align-items:center;
+  gap:0;
+  padding-right:0;
+}
+.marquee-item{
+  font-family:"Instrument Serif",Georgia,serif;
+  font-size:clamp(1rem,1.8vw,1.35rem);
+  letter-spacing:-.01em;
+  padding:0 26px;
+  position:relative;
+  white-space:nowrap;
+  color:var(--ink);
+}
+.marquee-item::after{
+  content:"✳";
+  position:absolute;
+  right:-6px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:.7em;
+  color:var(--accent);
+  font-family:"Inter",sans-serif;
+}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+/* ============ STATEMENT ============ */
+.statement{
+  padding:clamp(72px,12vw,150px) clamp(20px,5vw,56px);
+  text-align:center;
+}
+.statement p:first-child{
+  font-family:"Instrument Serif",Georgia,serif;
+  font-size:clamp(2rem,5.5vw,4.2rem);
+  line-height:1.02;
+  letter-spacing:-.025em;
+  margin:0 0 18px;
+}
+.statement p:first-child em{font-style:italic;color:var(--accent)}
+.statement p:last-child{
+  font-size:12px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin:0;
+}
+
+/* ============ ABOUT ============ */
+.about-grid{
+  display:grid;
+  grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);
+  gap:clamp(32px,6vw,80px);
+  align-items:start;
+}
+
+.portrait{
+  margin:0;
+  position:sticky;
+  top:110px;
+}
+.portrait-inner{
+  aspect-ratio:4/5;
+  border-radius:3px;
+  overflow:hidden;
+  position:relative;
+  background:
+    radial-gradient(120% 90% at 25% 15%, #ded4c4 0%, #c4b6a2 45%, #9d8d78 100%);
+  display:grid;
+  place-items:center;
+  box-shadow:0 30px 60px -40px rgba(23,21,15,.6);
+}
+.portrait-inner::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:
+    repeating-linear-gradient(115deg, rgba(255,255,255,.14) 0 1px, transparent 1px 9px);
+  opacity:.5;
+  mix-blend-mode:soft-light;
+}
+.portrait-inner span{
+  font-family:"Instrument Serif",Georgia,serif;
+  font-size:clamp(3.5rem,8vw,5.5rem);
+  color:rgba(255,255,255,.9);
+  letter-spacing:-.03em;
+  position:relative;
+  z-index:1;
+  text-shadow:0 2px 30px rgba(0,0,0,.15);
+}
+
+.portrait-inner img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center top;
+  display:block;
+  position:relative;
+  z-index:1;
+}
+
+.portrait-inner img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center top;
+  display:block;
+  position:relative;
+  z-index:1;
+}   
+.portrait figcaption{
+  margin-top:14px;
+  font-size:11px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--muted);
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.portrait figcaption::before{
+  content:"";
+  width:5px;height:5px;
+  border-radius:50%;
+  background:var(--accent);
+}
+
+.about-copy p{
+  margin:0 0 22px;
+  color:var(--muted);
+  font-size:clamp(.98rem,1.25vw,1.06rem);
+  line-height:1.78;
+}
+.about-copy p.lead{
+  font-family:"Instrument Serif",Georgia,serif;
+  font-size:clamp(1.4rem,2.6vw,2rem);
+  line-height:1.28;
+  letter-spacing:-.015em;
+  color:var(--ink);
+  margin-bottom:32px;
+}
+
+.tag{
+  display:inline-block;
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  font-weight:500;
+  color:var(--accent);
+  border:1px solid rgba(191,75,43,.35);
+  border-radius:100px;
+  padding:6px 14px;
+  margin-bottom:26px;
+}
+
+.skills{
+  list-style:none;
+  margin:36px 0 0;
+  padding:0;
+  border-top:1px solid var(--line);
+}
+.skills li{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:15px 0;
+  border-bottom:1px solid var(--line);
+  font-size:14px;
+  letter-spacing:.01em;
+}
+.skills li span:first-child{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.skills li em{
+  font-style:normal;
+  font-size:10px;
+  letter-spacing:.16em;
+  color:var(--muted);
+  font-variant-numeric:tabular-nums;
+}
+.skills li i{
+  display:block;
+  width:0;
+  height:1px;
+  background:var(--accent);
+  transition:width .6s var(--ease);
+  flex:1;
+  max-width:120px;
+  opacity:.5;
+}
+.skills li:hover i{width:120px}
+
+/* ============ WORK ============ */
+.work-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:32px;
+  flex-wrap:wrap;
+  margin-bottom:clamp(36px,5vw,60px);
+}
+
+.projects{
+  border-top:1px solid var(--line);
+}
+
+.project{
+  display:grid;
+  grid-template-columns:56px minmax(0,1fr) 48px;
+  gap:clamp(16px,3vw,44px);
+  align-items:start;
+  padding:clamp(26px,3.4vw,40px) clamp(14px,2.4vw,28px);
+  border-bottom:1px solid var(--line);
+  text-decoration:none;
+  color:inherit;
+  position:relative;
+  transition:background .55s var(--ease),color .55s var(--ease),padding .55s var(--ease);
+}
+.project:hover,
+.project:focus-visible{
+  background:var(--ink);
+  color:var(--bone);
+  outline:none;
+  padding-left:clamp(22px,3.4vw,40px);
+}
+.project:hover .p-meta,
+.project:focus-visible .p-meta{color:rgba(243,240,234,.62)}
+.project:hover .p-desc,
+.project:focus-visible .p-desc{color:rgba(243,240,234,.75)}
+.project:hover .p-arrow,
+.project:focus-visible .p-arrow{transform:translate(5px,-5px);color:var(--accent)}
+.project:hover .p-num,
+.project:focus-visible .p-num{color:var(--accent)}
+
+.p-num{
+  font-family:"Instrument Serif",Georgia,serif;
+  font-size:14px;
+  letter-spacing:.05em;
+  color:var(--muted);
+  padding-top:6px;
+  transition:color .45s;
+  font-variant-numeric:tabular-nums;
+}
+.p-meta{
+  font-size:10.5px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:10px;
+  transition:color .45s;
+  font-weight:500;
+}
+.p-title{
+  font-family:"Instrument Serif",Georgia,serif;
+  font-weight:400;
+  font-size:clamp(1.35rem,3vw,2.15rem);
+  line-height:1.08;
+  letter-spacing:-.02em;
+  margin:0 0 10px;
+}
+.p-desc{
+  margin:0;
+  font-size:14.5px;
+  line-height:1.65;
+  color:var(--muted);
+  max-width:56ch;
+  transition:color .45s;
+}
+.p-arrow{
+  font-size:20px;
+  line-height:1;
+  justify-self:end;
+  padding-top:6px;
+  transition:transform .45s var(--ease),color .45s;
+}
+
+/* ============ EDUCATION ============ */
+.timeline{
+  position:relative;
+  margin-top:clamp(36px,5vw,56px);
+}
+.timeline::before{
+  content:"";
+  position:absolute;
+  left:calc(clamp(96px,14vw,150px) + 0px);
+  top:8px;
+  bottom:8px;
+  width:1px;
+  background:var(--line);
+}
+
+.edu{
+  display:grid;
+  grid-template-columns:clamp(96px,14vw,150px) minmax(0,1fr);
+  gap:clamp(24px,4vw,56px);
+  padding:clamp(22px,3vw,34px) 0;
+  position:relative;
+}
+.edu-year{
+  font-size:11px;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  color:var(--muted);
+  padding-top:8px;
+  font-weight:500;
+  font-variant-numeric:tabular-nums;
+}
+.edu-body{position:relative;padding-left:clamp(24px,4vw,44px)}
+.edu-body::before{
+  content:"";
+  position:absolute;
+  left:-1px;
+  top:9px;
+  width:9px;height:9px;
+  border-radius:50%;
+  background:var(--bone);
+  border:1px solid var(--ink);
+  transform:translateX(-50%);
+  transition:background .4s,border-color .4s;
+}
+.edu:hover .edu-body::before{background:var(--accent);border-color:var(--accent)}
+
+.edu-num{
+  font-family:"Instrument Serif",Georgia,serif;
+  font-size:12px;
+  color:var(--accent);
+  display:block;
+  margin-bottom:6px;
+  letter-spacing:.06em;
+}
+.edu h3{
+  font-family:"Instrument Serif",Georgia,serif;
+  font-weight:400;
+  font-size:clamp(1.2rem,2.4vw,1.6rem);
+  letter-spacing:-.015em;
+  line-height:1.15;
+  margin:0 0 4px;
+}
+.edu .sub{
+  font-size:13.5px;
+  color:var(--accent);
+  margin:0 0 10px;
+  letter-spacing:.01em;
+}
+.edu .school{
+  font-size:14px;
+  font-weight:500;
+  margin:0 0 8px;
+}
+.edu .desc{
+  font-size:14px;
+  color:var(--muted);
+  line-height:1.68;
+  margin:0;
+  max-width:60ch;
+}
+
+/* ============ CERTIFICATIONS ============ */
+.certs{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:1px;
+  background:var(--line);
+  border:1px solid var(--line);
+  margin-top:clamp(36px,5vw,56px);
+}
+.cert{
+  background:var(--bone);
+  padding:clamp(24px,3.2vw,38px);
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  min-height:190px;
+  transition:background .5s var(--ease);
+  position:relative;
+}
+.cert:hover{background:var(--bone-2)}
+.cert-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:10.5px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--muted);
+  font-weight:500;
+}
+.cert-i{
+  font-family:"Instrument Serif",Georgia,serif;
+  font-size:13px;
+  letter-spacing:.04em;
+}
+.cert h3{
+  font-family:"Instrument Serif",Georgia,serif;
+  font-weight:400;
+  font-size:clamp(1.1rem,2vw,1.4rem);
+  line-height:1.2;
+  letter-spacing:-.01em;
+  margin:0;
+  flex:1;
+}
+.cert p{
+  margin:0;
+  font-size:12.5px;
+  color:var(--muted);
+  line-height:1.5;
+}
+
+/* ============ CONTACT ============ */
+.contact{
+  border-top:1px solid var(--line);
+}
+.contact .lede{margin-top:26px}
+.email{
+  display:inline-flex;
+  align-items:center;
+  gap:clamp(10px,2vw,20px);
+  font-family:"Instrument Serif",Georgia,serif;
+  font-size:clamp(1.15rem,3.4vw,2.4rem);
+  letter-spacing:-.02em;
+  text-decoration:none;
+  color:var(--ink);
+  margin-top:clamp(36px,5vw,56px);
+  padding-bottom:10px;
+  border-bottom:1px solid var(--line);
+  transition:border-color .5s var(--ease),color .5s var(--ease);
+  word-break:break-word;
+}
+.email span{
+  font-size:.65em;
+  transition:transform .5s var(--ease);
+  color:var(--accent);
+}
+.email:hover{border-bottom-color:var(--ink)}
+.email:hover span{transform:translate(6px,-6px)}
+
+/* ============ FOOTER ============ */
+.footer{
+  padding:32px clamp(20px,5vw,56px);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  flex-wrap:wrap;
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--muted);
+  border-top:1px solid var(--line);
+}
+.footer a{text-decoration:none;transition:color .3s}
+.footer a:hover{color:var(--accent)}
+
+/* ============ REVEAL ============ */
+.reveal{
+  opacity:0;
+  transform:translateY(26px);
+  transition:opacity .95s var(--ease),transform .95s var(--ease);
+  transition-delay:var(--d,0ms);
+}
+.reveal.in{opacity:1;transform:none}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:900px){
+  .about-grid{grid-template-columns:1fr}
+  .portrait{position:static;max-width:420px}
+  .portrait-inner{aspect-ratio:1/1}
+  .timeline::before{left:7px}
+  .edu{grid-template-columns:1fr;gap:14px}
+  .edu-year{padding-top:0}
+  .edu-body{padding-left:28px}
+  .edu-body::before{top:6px}
+  .certs{grid-template-columns:1fr}
+}
+
+@media (max-width:760px){
+  .nav-links{display:none}
+  .project{grid-template-columns:1fr;gap:14px}
+  .p-num{padding-top:0}
+  .p-arrow{position:absolute;top:26px;right:20px;justify-self:auto}
+  .hero{padding-top:110px}
+  .hero-bottom{padding-bottom:40px}
+}
+
+@media (max-width:420px){
+  .btn{padding:12px 18px;font-size:11px}
+  .footer{justify-content:center;text-align:center}
+}
+
+/* ============ MOTION PREFERENCES ============ */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+  }
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+
+<body id="top">
+
+<div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+
+<!-- ================= NAV ================= -->
+<header class="nav" id="nav">
+  <a href="#top" class="brand">Avril Marge<span>.</span></a>
+  <nav aria-label="Main">
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#certifications">Certifications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ================= HERO ================= -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap">
+      <p class="eyebrow reveal">BSIT Student · Web Developer</p>
+
+      <h1 id="hero-title" class="reveal" style="--d:80ms">
+        Avril Marge<br><em>Pascua.</em>
+      </h1>
+
+      <div class="hero-bottom">
+        <p class="lede reveal" style="--d:180ms">
+          Turning ideas into thoughtful websites and practical web-based systems.
+        </p>
+
+        <div class="hero-cta reveal" style="--d:260ms">
+          <a class="btn" href="#work">Explore my projects <span class="arw">→</span></a>
+          <a class="btn ghost" href="#about">About me</a>
+        </div>
+      </div>
+
+      <div class="hero-foot reveal" style="--d:340ms">
+        <span>Nueva Ecija, Philippines · 4th-year BSIT · Major in Web System</span>
+        <span class="scrollcue">Scroll to discover <i aria-hidden="true"></i></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MARQUEE ================= -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <div class="marquee-group">
+        <span class="marquee-item">HTML &amp; CSS</span>
+        <span class="marquee-item">JavaScript &amp; TypeScript</span>
+        <span class="marquee-item">PHP</span>
+        <span class="marquee-item">CSS</span>
+        <span class="marquee-item">Node.js</span>
+        <span class="marquee-item">Databases &amp; SQL</span>
+      </div>
+      <div class="marquee-group">
+        <span class="marquee-item">HTML &amp; CSS</span>
+        <span class="marquee-item">JavaScript &amp; TypeScript</span>
+        <span class="marquee-item">PHP</span>
+        <span class="marquee-item">CSS</span>
+        <span class="marquee-item">Node.js</span>
+        <span class="marquee-item">Databases &amp; SQL</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= STATEMENT ================= -->
+  <section class="statement">
+    <div class="wrap">
+      <p class="reveal">Learning. Building. <em>Growing.</em></p>
+      <p class="reveal" style="--d:120ms">A little better, one line at a time.</p>
+    </div>
+  </section>
+
+  <!-- ================= ABOUT ================= -->
+  <section class="section" id="about" aria-labelledby="about-title">
+    <div class="wrap">
+      <p class="eyebrow reveal">01 / About me</p>
+
+      <div class="about-grid">
+
+           <figure class="portrait reveal">
+          <div class="portrait-inner">
+            <img src="images/avril.jpg" alt="Avril Marge Pascua wearing a black blazer and white shirt">
+          </div>
+          <figcaption>Nueva Ecija, Philippines</figcaption>
+        </figure>
+
+        <div class="about-copy">
+          <h2 id="about-title" class="display reveal" style="--d:60ms">
+            A curious mind.<br>A builder <em>at heart.</em>
+          </h2>
+
+          <p class="lead reveal" style="--d:140ms">
+            Learning, creating, and growing one line of code at a time.
+          </p>
+
+          <div class="reveal" style="--d:200ms">
+            <span class="tag">Web development &amp; system design</span>
+          </div>
+
+          <p class="reveal" style="--d:240ms">
+            Hi! I'm Avril Marge Pascua, a fourth-year Bachelor of Science in Information
+            Technology (BSIT) student majoring in Web Systems. I have a strong interest in
+            web development and system design.
+          </p>
+
+          <p class="reveal" style="--d:300ms">
+            I have experience working with HTML, CSS, JavaScript, PHP, MySQL, and Ionic
+            through our academic projects and capstone development. These projects have
+            helped me develop my skills in designing user interfaces, developing web-based
+            systems, managing databases, and solving technical problems. As an aspiring IT
+            professional, I am eager to learn new technologies, improve my programming
+            skills, and gain more experience in the field of information technology.
+          </p>
+
+          <p class="reveal" style="--d:360ms">
+            I aim to create functional, user-friendly, and efficient systems that can help
+            solve real-world problems. Welcome to my portfolio, where I showcase my skills,
+            projects, and learning journey in the world of technology.
+          </p>
+
+          <ul class="skills reveal" style="--d:420ms">
+            <li><span><em>01</em> HTML &amp; CSS</span><i></i></li>
+            <li><span><em>02</em> JavaScript &amp; TypeScript</span><i></i></li>
+            <li><span><em>03</em> PHP</span><i></i></li>
+            <li><span><em>04</em> Node.js</span><i></i></li>
+            <li><span><em>05</em> Databases &amp; SQL</span><i></i></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= WORK ================= -->
+  <section class="section" id="work" aria-labelledby="work-title">
+    <div class="wrap">
+      <p class="eyebrow reveal">02 / Selected work</p>
+
+      <div class="work-head">
+        <h2 id="work-title" class="display reveal" style="--d:60ms">
+          Ideas, <em>brought to life.</em>
+        </h2>
+        <p class="lede reveal" style="--d:120ms" style="max-width:38ch">
+          Academic systems, a capstone project, and a personal venture.
+        </p>
+      </div>
+
+      <div class="projects">
+
+        <a class="project reveal" href="#work" aria-label="Student Information System — Academic Project, 2026">
+          <span class="p-num">01</span>
+          <div>
+            <div class="p-meta">Academic Project · 2026</div>
+            <h3 class="p-title">Student Information System</h3>
+            <p class="p-desc">
+              A web-based system designed to manage student information and records efficiently.
+            </p>
+          </div>
+          <span class="p-arrow" aria-hidden="true">↗</span>
+        </a>
+
+        <a class="project reveal" href="#work" style="--d:100ms" aria-label="Harana Performance Monitoring and Tracking System — Capstone Project, 2026">
+          <span class="p-num">02</span>
+          <div>
+            <div class="p-meta">Capstone Project · 2026</div>
+            <h3 class="p-title">Harana Performance Monitoring and Tracking System</h3>
+            <p class="p-desc">
+              A system designed to help monitor and track Harana performances in local communities.
+            </p>
+          </div>
+          <span class="p-arrow" aria-hidden="true">↗</span>
+        </a>
+
+        <a class="project reveal" href="#work" style="--d:200ms" aria-label="Flower Bouquet Business — Personal Project, 2026">
+          <span class="p-num">03</span>
+          <div>
+            <div class="p-meta">Personal Project · 2026</div>
+            <h3 class="p-title">Flower Bouquet Business</h3>
+            <p class="p-desc">
+              A small personal business involving bouquet designs, product research,
+              customer communication, and order management.
+            </p>
+          </div>
+          <span class="p-arrow" aria-hidden="true">↗</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= EDUCATION ================= -->
+  <section class="section" id="education" aria-labelledby="edu-title">
+    <div class="wrap">
+      <p class="eyebrow reveal">03 / Education</p>
+
+      <h2 id="edu-title" class="display reveal" style="--d:60ms">
+        The roots of<br><em>my journey.</em>
+      </h2>
+
+      <p class="lede reveal" style="--d:120ms; margin-top:26px">
+        The studies behind the code — from my earliest school years to a future in
+        information technology.
+      </p>
+
+      <div class="timeline">
+
+        <article class="edu reveal">
+          <div class="edu-year">2023 — 2027</div>
+          <div class="edu-body">
+            <span class="edu-num">01</span>
+            <h3>BS Information Technology</h3>
+            <p class="sub">Major in Web System</p>
+            <p class="school">Nueva Ecija University of Science and Technology</p>
+            <p class="desc">
+              Coursework in web systems, databases, and front-end development — capstone
+              focused on building full-stack web applications.
+            </p>
+          </div>
+        </article>
+
+        <article class="edu reveal" style="--d:100ms">
+          <div class="edu-year">2017 — 2023</div>
+          <div class="edu-body">
+            <span class="edu-num">02</span>
+            <h3>Junior and Senior High School</h3>
+            <p class="school">Talabutab Norte National High School</p>
+            <p class="desc">
+              Finished both junior and senior high school here, with early exposure to
+              computer subjects and programming basics.
+            </p>
+          </div>
+        </article>
+
+        <article class="edu reveal" style="--d:200ms">
+          <div class="edu-year">2011 — 2017</div>
+          <div class="edu-body">
+            <span class="edu-num">03</span>
+            <h3>Elementary Education</h3>
+            <p class="school">Talabutab Norte Elementary School</p>
+            <p class="desc">My earliest school years, in the same barangay.</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CERTIFICATIONS ================= -->
+  <section class="section" id="certifications" aria-labelledby="cert-title">
+    <div class="wrap">
+      <p class="eyebrow reveal">04 / Certifications</p>
+
+      <h2 id="cert-title" class="display reveal" style="--d:60ms">
+        Always <em>learning.</em>
+      </h2>
+
+      <p class="lede reveal" style="--d:120ms; margin-top:26px">
+        New knowledge. New possibilities.
+      </p>
+
+      <div class="certs">
+
+        <article class="cert reveal">
+          <div class="cert-top"><span>2026</span><span class="cert-i">01</span></div>
+          <h3>Software Development</h3>
+          <p>Ethel Programming Computer Programming Services</p>
+        </article>
+
+        <article class="cert reveal" style="--d:80ms">
+          <div class="cert-top"><span>2026</span><span class="cert-i">02</span></div>
+          <h3>IoT and Data Analytics: Turning Connected Devices into Smart Decisions</h3>
+          <p>Ethel Programming Computer Programming Services</p>
+        </article>
+
+        <article class="cert reveal" style="--d:160ms">
+          <div class="cert-top"><span>2026</span><span class="cert-i">03</span></div>
+          <h3>Data Analytics 101: Build Skills That Matter</h3>
+          <p>Ethel Programming Computer Programming Services</p>
+        </article>
+
+        <article class="cert reveal" style="--d:240ms">
+          <div class="cert-top"><span>2026</span><span class="cert-i">04</span></div>
+          <h3>Web Development Hands-On Journey: From Code to Website</h3>
+          <p>Ethel Programming Computer Programming Services</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section class="section contact" id="contact" aria-labelledby="contact-title">
+    <div class="wrap">
+      <p class="eyebrow reveal">05 / Get in touch</p>
+
+      <h2 id="contact-title" class="display reveal" style="--d:60ms">
+        Let's build<br><em>something meaningful.</em>
+      </h2>
+
+      <p class="lede reveal" style="--d:120ms">
+        Have a project in mind or an opportunity to share? I'd love to hear from you.
+      </p>
+
+      <a class="email reveal" style="--d:180ms" href="mailto:avrilmargepascua02@gmail.com">
+        avrilmargepascua02@gmail.com <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <span>© 2026 Avril Marge Pascua</span>
+  <a href="#top">Back to top ↑</a>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- Scroll reveal ---------- */
+  var revealEls = document.querySelectorAll('.reveal');
+
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    revealEls.forEach(function (el) { el.classList.add('in'); });
+  } else {
+    var revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+
+    revealEls.forEach(function (el) { revealObserver.observe(el); });
+  }
+
+  /* ---------- Nav state + scroll progress ---------- */
+  var nav = document.getElementById('nav');
+  var bar = document.getElementById('progressBar');
+  var ticking = false;
+
+  function onScroll() {
+    var y = window.pageYOffset || document.documentElement.scrollTop;
+    var docH = document.documentElement.scrollHeight - window.innerHeight;
+
+    nav.classList.toggle('scrolled', y > 40);
+    if (bar) bar.style.transform = 'scaleX(' + (docH > 0 ? Math.min(y / docH, 1) : 0) + ')';
+
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', function () {
+    if (!ticking) {
+      window.requestAnimationFrame(onScroll);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  onScroll();
+
+  /* ---------- Active nav link ---------- */
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
+
+  if ('IntersectionObserver' in window && sections.length) {
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var id = '#' + entry.target.id;
+        navLinks.forEach(function (link) {
+          link.classList.toggle('active', link.getAttribute('href') === id);
+        });
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+
+    sections.forEach(function (s) { spy.observe(s); });
+  }
+
+})();
+</script>
+
+</body>
+</html>
